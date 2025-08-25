@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['user_id'])) {
-    header("Location: ../public/login.php");
+    header("Location: ../login.php");
     exit;
 }
 ?>
@@ -14,6 +14,7 @@ if (!isset($_SESSION['user_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
     <style>
         body {
             min-height: 100vh;
@@ -22,35 +23,57 @@ if (!isset($_SESSION['user_id'])) {
 
         .sidebar {
             width: 250px;
-            background: #343a40;
+            background: #265166;
             color: #fff;
             flex-shrink: 0;
         }
 
+        .sidebar h4 {
+            padding: 20px;
+            margin: 0;
+            font-size: 1.2rem;
+           
+        }
+
         .sidebar a {
             color: #fff;
+            font-size: 16px;
+            font-weight: bold;
             text-decoration: none;
             display: block;
             padding: 12px 20px;
+            transition: all 0.3s;
         }
 
         .sidebar a:hover {
-            background: #495057;
+            background: #547C90;
+            color: #fff;
         }
 
         .content {
             flex-grow: 1;
             background: #f8f9fa;
-            padding: 20px;
+            display: flex;
+            flex-direction: column;
         }
 
         .topbar {
             background: #fff;
-            padding: 15px;
+            padding: 12px 20px;
             border-bottom: 1px solid #ddd;
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+
+        .topbar .profile {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .menu-title {
+            margin-left: 8px;
         }
     </style>
 </head>
@@ -59,25 +82,57 @@ if (!isset($_SESSION['user_id'])) {
 
     <!-- Sidebar -->
     <div class="sidebar">
-        <h4 class="p-3">Admin Panel</h4>
-        <a href="dashboard.php">🏠 Dashboard</a>
-        <a href="sales.php">💰 Sales</a>
-        <a href="expenses.php">📉 Expenses</a>
-        <a href="stock.php">📦 Stock</a>
-        <a href="staff.php">👨‍💼 Staff</a>
-        <a href="reports.php">📊 Reports</a>
-        <a href="../public/logout.php">🚪 Logout</a>
+        <h4><i class="fa-solid fa-building"></i> Franchise System</h4> <hr>
+        
+        <a href="dashboard.php"><i class="fa-solid fa-gauge"></i> <span class="menu-title">Dashboard</span></a> 
+
+        <a href="branches.php"><i class="fa-solid fa-code-branch"></i> <span class="menu-title">Branches</span></a>
+
+        <a href="sales.php"><i class="fa-solid fa-cart-shopping"></i> <span class="menu-title">Sales</span></a>
+
+        <a href="expenses.php"><i class="fa-solid fa-money-bill-trend-up"></i> <span class="menu-title">Expenses</span></a>
+
+        <a href="stock.php"><i class="fa-solid fa-boxes-stacked"></i> <span class="menu-title">Stock</span></a>
+
+        <a href="suppliers.php"><i class="fa-solid fa-truck-field"></i> <span class="menu-title">Suppliers</span></a>
+
+        <a href="staff.php"><i class="fa-solid fa-users"></i> <span class="menu-title">Staff</span></a>
+
+        <a href="attendance.php"><i class="fa-solid fa-calendar-check"></i> <span class="menu-title">Attendance</span></a>
+
+        <a href="reports.php"><i class="fa-solid fa-chart-line"></i> <span class="menu-title">Reports</span></a>
+
+        <a href="settings.php"><i class="fa-solid fa-gear"></i> <span class="menu-title">Settings</span></a>
     </div>
 
     <!-- Content -->
     <div class="content">
         <!-- Topbar -->
         <div class="topbar">
-            <h5>Welcome, Admin</h5>
-            <span><?php echo date("d M Y"); ?></span>
+            <h5><i class="fa-solid fa-chart-pie text-primary"></i> Dashboard</h5>
+            <div class="profile">
+                <!-- Notification -->
+                <a href="#" class="text-dark position-relative">
+                    <i class="fa-solid fa-bell fa-lg"></i>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        3
+                    </span>
+                </a>
+                <!-- Profile Dropdown -->
+                <div class="dropdown">
+                    <a href="#" class="d-flex align-items-center text-dark text-decoration-none dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="https://via.placeholder.com/35" class="rounded-circle me-2" alt="profile">
+                        <span>Admin</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><a class="dropdown-item" href="../logout.php">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
-        <!-- Dashboard Cards -->
+        <!-- Dashboard Content -->
         <div class="container mt-4">
             <div class="row g-3">
                 <div class="col-md-3">
