@@ -1,0 +1,98 @@
+-- Create Database
+CREATE DATABASE IF NOT EXISTS franchise_db;
+USE franchise_db;
+
+-- ==============================
+-- 1. Branches Table
+-- ==============================
+CREATE TABLE branches (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    location VARCHAR(200) NOT NULL,
+    manager_name VARCHAR(100),
+    contact VARCHAR(50),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- ==============================
+-- 2. Sales Table
+-- ==============================
+CREATE TABLE sales (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    branch_id INT NOT NULL,
+    sale_date DATE NOT NULL,
+    amount DECIMAL(12,2) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (branch_id) REFERENCES branches(id) ON DELETE CASCADE
+);
+
+-- ==============================
+-- 3. Expenses Table
+-- ==============================
+CREATE TABLE expenses (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    branch_id INT NOT NULL,
+    expense_date DATE NOT NULL,
+    category VARCHAR(100) NOT NULL,
+    amount DECIMAL(12,2) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (branch_id) REFERENCES branches(id) ON DELETE CASCADE
+);
+
+-- ==============================
+-- 4. Stock Table
+-- ==============================
+CREATE TABLE stock (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    branch_id INT NOT NULL,
+    product_name VARCHAR(150) NOT NULL,
+    quantity INT NOT NULL,
+    reorder_level INT DEFAULT 10,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (branch_id) REFERENCES branches(id) ON DELETE CASCADE
+);
+
+-- ==============================
+-- 5. Suppliers Table
+-- ==============================
+CREATE TABLE suppliers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(150) NOT NULL,
+    contact_person VARCHAR(100),
+    phone VARCHAR(50),
+    email VARCHAR(100),
+    address VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- ==============================
+-- 6. Staff Table
+-- ==============================
+CREATE TABLE staff (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    branch_id INT NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    position VARCHAR(100),
+    salary DECIMAL(12,2),
+    joining_date DATE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (branch_id) REFERENCES branches(id) ON DELETE CASCADE
+);
+
+-- ==============================
+-- 7. Attendance Table
+-- ==============================
+CREATE TABLE attendance (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    staff_id INT NOT NULL,
+    attendance_date DATE NOT NULL,
+    status ENUM('Present','Absent','Leave') DEFAULT 'Present',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (staff_id) REFERENCES staff(id) ON DELETE CASCADE
+);
+
+-- ==============================
+-- 8. Reports (Optional - mostly generated dynamically)
+-- ==============================
+-- Reports সাধারণত Sales + Expenses থেকে generate হবে।
+-- তাই আলাদা টেবিল না করে Report জেনারেট করা হবে queries দিয়ে।
