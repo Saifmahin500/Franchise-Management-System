@@ -1,6 +1,13 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) session_start();
-require_once __DIR__ . '/../config/db.php';
 
-$database = new Database();
-$DB_con = $database->dbConnection();
+$DB_HOST = 'localhost';
+$DB_USER = 'root';
+$DB_PASS = '';
+$DB_NAME = 'franchise_db';
+
+try {
+    $DB_con = new PDO("mysql:host={$DB_HOST}; dbname={$DB_NAME}", $DB_USER, $DB_PASS);
+    $DB_con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    echo $e->getMessage();
+}
