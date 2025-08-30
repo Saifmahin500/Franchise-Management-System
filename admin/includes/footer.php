@@ -1,7 +1,13 @@
     <!-- ========================== -->
     <!-- JS Scripts -->
     <!-- ========================== -->
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap 5 Bundle (includes Popper) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         // Branch-wise Profit Chart
@@ -59,6 +65,6 @@
             }
         });
     </script>
-</body>
+    </body>
 
-</html>
+    </html>
