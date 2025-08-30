@@ -32,22 +32,23 @@ $sales = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <?php include "../includes/header.php"; ?>
 <?php include "../includes/sidebar.php"; ?>
 
-<?php if (!empty($_SESSION['success'])): ?>
-    <div class="alert alert-success"><?= $_SESSION['success'];
-                                        unset($_SESSION['success']); ?></div>
-<?php endif; ?>
 
-<?php if (!empty($_SESSION['error'])): ?>
-    <div class="alert alert-danger"><?= $_SESSION['error'];
-                                    unset($_SESSION['error']); ?></div>
-<?php endif; ?>
 
-<div class="container-fluid">
-    <h4 class="mb-4">Sales</h4>
-    <!-- Add Sale Button -->
-    <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#addSaleModal">
-        + Add Sale
-    </button>
+<div class="container-fluid p-4">
+<h5 class="mt-3"><i class="fa-solid fa-cart-shopping"></i> Sales</h5>
+<hr>
+
+    <?php if (!empty($_SESSION['success'])): ?>
+        <div class="alert alert-success"><?= $_SESSION['success'];
+                                            unset($_SESSION['success']); ?></div>
+    <?php endif; ?>
+
+    <?php if (!empty($_SESSION['error'])): ?>
+        <div class="alert alert-danger"><?= $_SESSION['error'];
+                                        unset($_SESSION['error']); ?></div>
+    <?php endif; ?>
+
+
 
 
 
@@ -99,22 +100,30 @@ $sales = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
     <!-- Date Filter Form -->
-    <form method="GET" class="form-inline mb-3">
-        <label class="mr-2">From:</label>
-        <input type="date" name="from_date" class="form-control mr-2"
-            value="<?= htmlspecialchars($_GET['from_date'] ?? '') ?>">
+    <h5>Date filter</h5>
+    <form method="GET" class="row g-3 mb-4">
+        <div class="col-md-3">
+            <label class="mr-2">From:</label>
+            <input type="date" name="from_date" class="form-control mr-2"
+                value="<?= htmlspecialchars($_GET['from_date'] ?? '') ?>">
+        </div>
 
-        <label class="mr-2">To:</label>
-        <input type="date" name="to_date" class="form-control mr-2"
-            value="<?= htmlspecialchars($_GET['to_date'] ?? '') ?>">
+        <div class="col-md-3">
+            <label class="mr-2">To:</label>
+            <input type="date" name="to_date" class="form-control mr-2"
+                value="<?= htmlspecialchars($_GET['to_date'] ?? '') ?>">
+        </div>
+        <div class="col-md-3 d-flex align-items-end">
+            <button type="submit" class="btn btn btn-primary mt-3 me-2"><i class="fas fa-filter"></i> Filter</button>
+            <a href="sales.php" class="btn btn-secondary ml-2 mt-3"><i class="fas fa-sync"></i> Reset</a>
 
-        <button type="submit" class="btn btn-primary">Filter</button>
-        <a href="sales.php" class="btn btn-secondary ml-2">Reset</a>
+        </div>
+
     </form>
 
     <!-- Sales Table -->
     <table class="table table-bordered table-striped">
-        <thead>
+        <thead class="table-success">
             <tr>
                 <th>Date</th>
                 <th>Branch</th>
@@ -137,6 +146,31 @@ $sales = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php endif; ?>
         </tbody>
     </table>
-</div>
 
-<?php include "../includes/footer.php"; ?>
+    <div class="mb-3 d-flex justify-content-between">
+
+        <!-- Add Sale Button -->
+        <button type="button" class="btn btn_b mb-3" data-bs-toggle="modal" data-bs-target="#addSaleModal">
+            + Add Sale
+        </button>
+
+        <!-- Export to Excel/PDF option -->
+
+        <div class="d-flex justify-content-end mb-3">
+            <a href="sales_export.php?type=excel&from=<?= urlencode($_GET['from_date'] ?? '') ?>&to=<?= urlencode($_GET['to_date'] ?? '') ?>"
+                class="btn btn-outline-success me-2"> <i class="fa-regular fa-file-excel"></i>
+                Export to Excel
+            </a>
+            <a href="sales_export.php?type=pdf&from=<?= urlencode($_GET['from_date'] ?? '') ?>&to=<?= urlencode($_GET['to_date'] ?? '') ?>"
+                class="btn btn-outline-danger "><i class="fas fa-file-pdf"></i>
+                Export to PDF
+            </a>
+        </div>
+    </div>
+
+
+
+
+
+
+    <?php include "../includes/footer.php"; ?>

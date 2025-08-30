@@ -69,12 +69,26 @@
         .menu-title {
             margin-left: 8px;
         }
-        .card{
-            color:rgb(0, 13, 10);
+
+        .card {
+            color: rgb(0, 13, 10);
         }
-        #dcard{
+
+        #dcard {
             background: #DBF0DD;
         }
+
+        .btn_b {
+            background-color: #DBF0DD;
+            font-weight: bold;
+            color: #000;
+        }
+
+        .btn_b:hover {
+            background-color: #173831;
+            color: #fff;
+        }
+       
     </style>
 </head>
 

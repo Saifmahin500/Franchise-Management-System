@@ -3,7 +3,7 @@ require_once __DIR__ . "/../../config/db.php";
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $sale_date = $_POST['sale_date'] ?? null;
+    $sale_date = $_POST['date'] ?? null;
     $branch_id = $_POST['branch_id'] ?? null;
     $amount = $_POST['amount'] ?? null;
 

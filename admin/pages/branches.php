@@ -8,8 +8,9 @@ $stmt = $DB_con->query("SELECT * FROM branches ORDER BY id DESC");
 $branches = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<div class="content-wrapper p-4">
-    <h2>Branches</h2>
+<div class="container-fluid p-4">
+<h5 class="mt-3"><i class="fa-solid fa-code-branch"></i> Branches</h5>
+<hr>
 
     <!-- ✅ Success / Error Alerts -->
     <?php if (isset($_GET['added'])): ?>
@@ -29,10 +30,10 @@ $branches = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
     <?php endif; ?>
 
-    <a href="branch_add.php" class="btn btn-primary mb-3">➕ Add New Branch</a>
+    <a href="branch_add.php" class="btn btn_b mb-3" >➕ Add New Branch</a>
 
-    <table class="table table-bordered">
-        <thead class="table-dark">
+    <table class="table table-bordered table-striped">
+        <thead class="table-success">
             <tr>
                 <th>ID</th>
                 <th>Name</th>
@@ -51,9 +52,9 @@ $branches = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <td><?= htmlspecialchars($b['manager_name']) ?></td>
                     <td><?= htmlspecialchars($b['contact_number']) ?></td>
                     <td>
-                        <a href="branch_edit.php?id=<?= $b['id'] ?>" class="btn btn-sm btn-warning">✏️ Edit</a>
+                        <a href="branch_edit.php?id=<?= $b['id'] ?>" class="btn btn-sm btn-warning"><i class="fa-solid fa-pen-fancy"></i> Edit</a>
                         <a href="branch_delete.php?id=<?= $b['id'] ?>" class="btn btn-sm btn-danger"
-                            onclick="return confirm('Are you sure you want to delete this branch?')">🗑️ Delete</a>
+                            onclick="return confirm('Are you sure you want to delete this branch?')"><i class="fa-solid fa-trash"></i> Delete</a>
                     </td>
                 </tr>
             <?php endforeach; ?>
