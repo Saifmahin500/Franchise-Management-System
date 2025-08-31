@@ -37,8 +37,13 @@ $expenses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <?php include "../includes/sidebar.php"; ?>
 
 <div class="container-fluid p-4">
-    <h5 class="mt-3"><i class="fa-solid fa-money-bill-trend-up"></i> Expenses</h5>
-    <hr>
+    <div class="d-flex justify-content-between mb-2">
+        <h5><i class="fa-solid fa-money-bill-trend-up"></i> Expenses</h5>
+        <!-- Add Expense Button -->
+        <button class="btn btn_b" data-bs-toggle="modal" data-bs-target="#addExpenseModal">
+            <i class="fas fa-plus"></i> Add Expense
+        </button>
+    </div>
 
     <!-- ========================== -->
     <!-- Step 1: Filter Form -->
@@ -108,23 +113,19 @@ $expenses = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <!-- ========================== -->
     <!-- Add Expense Button & Export -->
     <!-- ========================== -->
-    <div class="mb-3 d-flex justify-content-between">
-        <!-- Add Expense Button -->
-        <button class="btn btn_b" data-bs-toggle="modal" data-bs-target="#addExpenseModal">
-            <i class="fas fa-plus"></i> Add Expense
-        </button>
 
-        <!-- Export Buttons -->
-        <div class="d-flex justify-content-end mb-3">
-            <a href="expenses_export.php?type=excel&from=<?= $from ?>&to=<?= $to ?>&category=<?= $category ?>" class="btn btn-outline-success me-2"><i class="fa-regular fa-file-excel"></i>
-                Export to Excel
-            </a>
-            <a href="expenses_export.php?type=pdf&from=<?= $from ?>&to=<?= $to ?>&category=<?= $category ?>"
-                class="btn btn-outline-danger">
-                <i class="fas fa-file-pdf"></i> Export PDF
-            </a>
-        </div>
+
+    <!-- Export Buttons -->
+    <div class="d-flex justify-content-end mb-3">
+        <a href="expenses_export.php?type=excel&from=<?= $from ?>&to=<?= $to ?>&category=<?= $category ?>" class="btn btn-outline-success me-2"><i class="fa-regular fa-file-excel"></i>
+            Export to Excel
+        </a>
+        <a href="expenses_export.php?type=pdf&from=<?= $from ?>&to=<?= $to ?>&category=<?= $category ?>"
+            class="btn btn-outline-danger">
+            <i class="fas fa-file-pdf"></i> Export PDF
+        </a>
     </div>
+
 
     <!-- ========================== -->
     <!-- Add Expense Modal -->

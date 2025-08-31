@@ -35,8 +35,14 @@ $sales = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 <div class="container-fluid p-4">
-<h5 class="mt-3"><i class="fa-solid fa-cart-shopping"></i> Sales</h5>
-<hr>
+    <div class="d-flex justify-content-between mb-2">
+        <h5><i class="fa-solid fa-cart-shopping"></i> Sales</h5>
+        <!-- Add Sale Button -->
+        <button type="button" class="btn btn_b mb-3" data-bs-toggle="modal" data-bs-target="#addSaleModal">
+            + Add Sale
+        </button>
+    </div>
+
 
     <?php if (!empty($_SESSION['success'])): ?>
         <div class="alert alert-success"><?= $_SESSION['success'];
@@ -147,12 +153,9 @@ $sales = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </tbody>
     </table>
 
-    <div class="mb-3 d-flex justify-content-between">
+   
 
-        <!-- Add Sale Button -->
-        <button type="button" class="btn btn_b mb-3" data-bs-toggle="modal" data-bs-target="#addSaleModal">
-            + Add Sale
-        </button>
+
 
         <!-- Export to Excel/PDF option -->
 
@@ -166,7 +169,7 @@ $sales = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 Export to PDF
             </a>
         </div>
-    </div>
+
 
 
 

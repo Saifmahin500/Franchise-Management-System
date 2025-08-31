@@ -79,14 +79,14 @@
         }
 
         .btn_b {
-            background-color: #DBF0DD;
+            background-color: #173831;
+            color: #fff;
             font-weight: bold;
-            color: #000;
         }
 
         .btn_b:hover {
-            background-color: #173831;
-            color: #fff;
+            background-color: #DBF0DD;
+            color: #000;
         }
        
     </style>

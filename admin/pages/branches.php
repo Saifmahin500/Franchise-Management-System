@@ -9,8 +9,11 @@ $branches = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <div class="container-fluid p-4">
-<h5 class="mt-3"><i class="fa-solid fa-code-branch"></i> Branches</h5>
-<hr>
+<div class="d-flex justify-content-between mb-2">
+<h5 ><i class="fa-solid fa-code-branch"></i> Branches</h5>
+<a href="branch_add.php" class="btn btn_b mb-3" >➕ Add New Branch</a>
+</div>
+
 
     <!-- ✅ Success / Error Alerts -->
     <?php if (isset($_GET['added'])): ?>
@@ -30,7 +33,7 @@ $branches = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
     <?php endif; ?>
 
-    <a href="branch_add.php" class="btn btn_b mb-3" >➕ Add New Branch</a>
+    
 
     <table class="table table-bordered table-striped">
         <thead class="table-success">
