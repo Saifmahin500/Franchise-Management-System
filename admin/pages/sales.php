@@ -36,7 +36,7 @@ $sales = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <div class="container-fluid p-4">
     <div class="d-flex justify-content-between mb-2">
-        <h5><i class="fa-solid fa-cart-shopping"></i> Sales</h5>
+        <h2><i class="fa-solid fa-cart-shopping"></i> Sales</h2>
         <!-- Add Sale Button -->
         <button type="button" class="btn btn_b mb-3" data-bs-toggle="modal" data-bs-target="#addSaleModal">
             + Add Sale

@@ -95,7 +95,7 @@ $lowStock = $pdo->query("SELECT product_name, quantity FROM stock WHERE quantity
 <div class="content">
     <!-- Topbar -->
     <div class="topbar p-4">
-        <h5><i class="fa-solid fa-chart-pie "></i> Dashboard</h5>
+        <h2><i class="fa-solid fa-chart-pie "></i> Dashboard</h2>
         <div class="profile">
             <!-- Notification -->
             <a href="#" class="text-dark position-relative">

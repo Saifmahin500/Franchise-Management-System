@@ -24,7 +24,7 @@ $stocks = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <div class="container-fluid mt-4">
     <!-- Top Actions -->
     <div class="d-flex justify-content-between mb-3">
-        <h5 class=""><i class="fa-solid fa-boxes-stacked"></i> Stock</h5>
+        <h2 class=""><i class="fa-solid fa-boxes-stacked"></i> Stock</h2>
         <button class="btn btn_b" data-bs-toggle="modal" data-bs-target="#addStockModal">
             + Add Stock Entry
         </button>

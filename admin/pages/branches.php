@@ -10,7 +10,7 @@ $branches = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <div class="container-fluid p-4">
 <div class="d-flex justify-content-between mb-2">
-<h5 ><i class="fa-solid fa-code-branch"></i> Branches</h5>
+<h2 ><i class="fa-solid fa-code-branch"></i> Branches</h2>
 <a href="branch_add.php" class="btn btn_b mb-3" >➕ Add New Branch</a>
 </div>
 

@@ -38,7 +38,7 @@ $expenses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <div class="container-fluid p-4">
     <div class="d-flex justify-content-between mb-2">
-        <h5><i class="fa-solid fa-money-bill-trend-up"></i> Expenses</h5>
+        <h2><i class="fa-solid fa-money-bill-trend-up"></i> Expenses</h2>
         <!-- Add Expense Button -->
         <button class="btn btn_b" data-bs-toggle="modal" data-bs-target="#addExpenseModal">
             <i class="fas fa-plus"></i> Add Expense
