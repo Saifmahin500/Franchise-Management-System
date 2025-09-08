@@ -84,9 +84,9 @@ $stocks = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <td><?= htmlspecialchars($row['quantity']) ?></td>
                                 <td><?= htmlspecialchars($row['created_at']) ?></td>
                                 <td>
-                                    <a href="stock_edit.php?id=<?= $row['id'] ?>" class="btn btn-sm btn-warning">Edit</a>
+                                    <a href="stock_edit.php?id=<?= $row['id'] ?>" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
                                     <a href="stock_delete.php?id=<?= $row['id'] ?>" class="btn btn-sm btn-danger"
-                                        onclick="return confirm('Are you sure?');">Delete</a>
+                                        onclick="return confirm('Are you sure?');"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

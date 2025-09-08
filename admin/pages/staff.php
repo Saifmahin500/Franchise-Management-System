@@ -87,7 +87,7 @@ $branches = $pdo->query("SELECT * FROM branches")->fetchAll();
 
     <!-- ✅ Branch Filter Form -->
     <label class="form-label fw-semibold mb-2">Filter by Branch</label>
-    <form method="GET" class="mb-3 d-flex" style="max-width:400px;"> 
+    <form method="GET" class="mb-3 d-flex" style="max-width:400px;">
         <select name="branch_id" class="form-select me-2">
             <option value="">-- All Branches --</option>
             <?php foreach ($branches as $b): ?>
@@ -123,10 +123,10 @@ $branches = $pdo->query("SELECT * FROM branches")->fetchAll();
                     <td><?= htmlspecialchars($s['branch_name']) ?></td>
                     <td>
                         <!-- Edit Button -->
-                        <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#editStaffModal<?= $s['id'] ?>">✏️ Edit</button>
+                        <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#editStaffModal<?= $s['id'] ?>"><i class="fa fa-edit"></i></button>
 
                         <!-- Delete Button -->
-                        <a href="staff.php?delete=<?= $s['id'] ?>" onclick="return confirm('Are you sure to delete this staff?')" class="btn btn-sm btn-danger">🗑 Delete</a>
+                        <a href="staff.php?delete=<?= $s['id'] ?>" onclick="return confirm('Are you sure to delete this staff?')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                     </td>
                 </tr>
 

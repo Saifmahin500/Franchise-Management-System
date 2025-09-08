@@ -55,9 +55,9 @@ $branches = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <td><?= htmlspecialchars($b['manager_name']) ?></td>
                     <td><?= htmlspecialchars($b['contact_number']) ?></td>
                     <td>
-                        <a href="branch_edit.php?id=<?= $b['id'] ?>" class="btn btn-sm btn-warning"><i class="fa-solid fa-pen-fancy"></i> Edit</a>
+                        <a href="branch_edit.php?id=<?= $b['id'] ?>" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
                         <a href="branch_delete.php?id=<?= $b['id'] ?>" class="btn btn-sm btn-danger"
-                            onclick="return confirm('Are you sure you want to delete this branch?')"><i class="fa-solid fa-trash"></i> Delete</a>
+                            onclick="return confirm('Are you sure you want to delete this branch?')"></i> <i class="fa fa-trash"></i></a>
                     </td>
                 </tr>
             <?php endforeach; ?>
