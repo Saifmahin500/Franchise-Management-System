@@ -9,7 +9,7 @@ class Admin
 
     public function login(string $email, string $password): array
     {
-        $stmt = $this->db->prepare("SELECT id,name,email,password_hash,role,status FROM users WHERE email = ? LIMIT 1");
+        $stmt = $this->db->prepare("SELECT id,username,email,password_hash,role,status FROM users WHERE email = ? LIMIT 1");
         $stmt->execute([$email]);
         $u = $stmt->fetch();
 
@@ -22,7 +22,7 @@ class Admin
 
         $_SESSION['admin_logged_in'] = true;
         $_SESSION['user_id']   = (int)$u['id'];
-        $_SESSION['user_name'] = $u['name'];
+        $_SESSION['user_name'] = $u['username'];
         $_SESSION['user_role'] = $u['role'];
 
         // ব্রাঞ্চ ম্যানেজারের ডিফল্ট ব্রাঞ্চ (থাকলে) সেট করো
