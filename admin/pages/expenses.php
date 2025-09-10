@@ -1,5 +1,7 @@
 <?php
 require_once __DIR__ . "/../../config/db.php";
+require_once __DIR__ . "/../includes/auth.php";
+requireRole(['admin','manager']);
 
 // Default filter values
 $from = $_GET['from'] ?? date('Y-m-01'); // first day of this month

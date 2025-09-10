@@ -1,5 +1,7 @@
 <?php
 require_once __DIR__ . "/../../config/db.php";
+require_once __DIR__ . "/../includes/auth.php";
+requireRole(['admin']);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['company_name'];

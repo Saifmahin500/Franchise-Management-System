@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . "/../../config/db.php";
-session_start();
+require_once __DIR__ . "/../includes/auth.php";
+requireRole(['admin','manager']);
 
 // Default query: সব sales দেখাবে
 $query = "SELECT s.id, s.sale_date, s.amount, b.name 

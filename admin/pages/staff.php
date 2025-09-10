@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . "/../../config/db.php";
-session_start();
+require_once __DIR__ . "/../includes/auth.php";
+requireRole(['admin','manager']);
 
 // ==========================
 // 🔔 Alert Messages (Session)

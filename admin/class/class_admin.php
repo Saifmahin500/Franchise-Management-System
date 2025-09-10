@@ -5,11 +5,16 @@ class Admin
     public function __construct(PDO $db)
     {
         $this->db = $db;
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
     }
 
     public function login(string $email, string $password): array
     {
-        $stmt = $this->db->prepare("SELECT id,username,email,password_hash,role,status FROM users WHERE email = ? LIMIT 1");
+        $stmt = $this->db->prepare("SELECT id, username, email, password_hash, role, status 
+                                    FROM users 
+                                    WHERE email = ? LIMIT 1");
         $stmt->execute([$email]);
         $u = $stmt->fetch();
 
@@ -20,33 +25,33 @@ class Admin
             return ['ok' => false, 'err' => 'Invalid email or password'];
         }
 
-        $_SESSION['admin_logged_in'] = true;
+        // ✅ Session set
+        $_SESSION = []; // পুরানো সেশন ক্লিয়ার করে নতুন দিচ্ছি
+        $_SESSION['logged_in'] = true;
         $_SESSION['user_id']   = (int)$u['id'];
+        $_SESSION['user_email'] = $u['email'];
         $_SESSION['user_name'] = $u['username'];
-        $_SESSION['user_role'] = $u['role'];
-
-        // ব্রাঞ্চ ম্যানেজারের ডিফল্ট ব্রাঞ্চ (থাকলে) সেট করো
-        $_SESSION['branch_id'] = null;
-        if ($u['role'] === 'branch_manager') {
-            $q = $this->db->prepare("SELECT branch_id FROM user_branches WHERE user_id = ? LIMIT 1");
-            $q->execute([$u['id']]);
-            $m = $q->fetch();
-            if ($m) $_SESSION['branch_id'] = (int)$m['branch_id'];
-        }
+        $_SESSION['user_role'] = strtolower($u['role']); // admin / manager / staff
 
         return ['ok' => true];
     }
 
     public static function requireLogin()
     {
-        if (empty($_SESSION['admin_logged_in'])) {
-            header('Location: /franchise_management/admin/login.php');
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        if (empty($_SESSION['logged_in'])) {
+            header('Location: ../login.php');
             exit;
         }
     }
 
     public static function logout()
     {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
         session_unset();
         session_destroy();
     }

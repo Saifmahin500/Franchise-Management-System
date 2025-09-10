@@ -1,5 +1,7 @@
 <?php
 require_once __DIR__ . "/../../config/db.php";
+require_once __DIR__ . "/../includes/auth.php";
+requireRole(['admin', 'staff']);
 
 
 // Branch list
@@ -144,7 +146,7 @@ $attendanceList = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <th>Branch</th>
                     <th>Date</th>
                     <th>Status</th>
-                    <th>Action</th> 
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
